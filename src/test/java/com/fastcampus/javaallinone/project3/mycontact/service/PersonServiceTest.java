@@ -3,20 +3,22 @@ package com.fastcampus.javaallinone.project3.mycontact.service;
 import com.fastcampus.javaallinone.project3.mycontact.domain.Person;
 import com.fastcampus.javaallinone.project3.mycontact.repository.PersonRepository;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class PersonServiceTest {
 
-    @Autowired
+    @InjectMocks    // Test 대상
     private PersonService personService;
 
-    @Autowired
+    @Mock           // Test 대상 파일에서 사용하는
     private PersonRepository personRepository;
 
     @Test
