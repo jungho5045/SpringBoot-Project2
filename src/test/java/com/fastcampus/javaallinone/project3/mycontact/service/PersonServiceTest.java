@@ -2,6 +2,7 @@ package com.fastcampus.javaallinone.project3.mycontact.service;
 
 import com.fastcampus.javaallinone.project3.mycontact.domain.Person;
 import com.fastcampus.javaallinone.project3.mycontact.repository.PersonRepository;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class PersonServiceTest {
@@ -18,22 +20,18 @@ class PersonServiceTest {
     @InjectMocks    // Test 대상
     private PersonService personService;
 
-    @Mock           // Test 대상 파일에서 사용하는
+    @Mock
     private PersonRepository personRepository;
 
     @Test
     void getPeopleByName() {
-        List<Person> result = personService.getPeopleByName("jungho");
+        when(personRepository.findByName("martin"))
+                .thenReturn(Lists.newArrayList(new Person("martin")));
+
+        List<Person> result = personService.getPeopleByName("martin");
 
         assertThat(result.size()).isEqualTo(1);
-        assertThat(result.get(0).getName()).isEqualTo("jungho");
-    }
-
-    @Test
-    void getPerson() {
-        Person person = personService.getPerson(3L);
-
-        assertThat(person.getName()).isEqualTo("dosang");
+        assertThat(result.get(0).getName()).isEqualTo("martin");
     }
 
 }
