@@ -2,7 +2,6 @@ package com.fastcampus.javaallinone.project3.mycontact.controller;
 
 import com.fastcampus.javaallinone.project3.mycontact.controller.dto.PersonDto;
 import com.fastcampus.javaallinone.project3.mycontact.domain.Person;
-import com.fastcampus.javaallinone.project3.mycontact.repository.PersonRepository;
 import com.fastcampus.javaallinone.project3.mycontact.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +16,8 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    @Autowired
-    private PersonRepository personRepository;
-
     @GetMapping("/{id}")
     public Person getPerson(@PathVariable Long id){
-        log.info("person >> {} ", personRepository.findAll());
-
         return personService.getPerson(id);
     }
 
